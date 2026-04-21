@@ -1,0 +1,32 @@
+# ==== 构建产物、缓存 ====
+target/
+.mvn/wrapper/maven-wrapper.jar
+
+# ==== IDE / 系统文件 ====
+.idea/
+.vscode/
+*.iml
+*.log
+.DS_Store
+
+# ==== Git ====
+.git/
+.gitignore
+.gitattributes
+
+# ==== 敏感 / 环境 ====
+# 真实 Key 文件严禁打进镜像（配置通过 -e AMAP_KEY= 注入）
+src/main/resources/config.properties
+.env
+.env.*
+
+# ==== 文档 / 说明 ====
+# 容器里不需要这些文件，减小构建上下文
+README.md
+TODO.md
+LICENSE
+
+# ==== Docker 本身 ====
+Dockerfile
+docker-compose.yml
+.dockerignore

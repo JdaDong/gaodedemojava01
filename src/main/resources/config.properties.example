@@ -1,0 +1,13 @@
+# 高德地图 Demo 项目配置模板
+# ------------------------------------------------------------
+# 使用说明：
+#   1. 将本文件复制为同目录下的 config.properties
+#   2. 填入你的真实 Key（https://lbs.amap.com/ 申请 "Web 服务" 类型）
+#   3. config.properties 已加入 .gitignore，不会被提交
+#
+# 也可以不改本文件，通过环境变量 AMAP_KEY 覆盖（优先级更高）：
+#   export AMAP_KEY=你的Key
+# ------------------------------------------------------------
+
+# 高德 Web 服务 Key（必填）
+amap.key=your-amap-web-service-key-here

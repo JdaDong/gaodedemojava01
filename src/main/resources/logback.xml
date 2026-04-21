@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- 控制台输出：彩色、带时间、含调用位置 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %highlight(%-5level) %cyan(%logger{36}) - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 业务代码日志级别 -->
+    <logger name="org.example" level="DEBUG"/>
+
+    <!-- 第三方库降噪：OkHttp/Netty 等默认只看 WARN -->
+    <logger name="okhttp3" level="WARN"/>
+    <logger name="com.alibaba.fastjson2" level="WARN"/>
+
+    <!-- 根 logger -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+</configuration>

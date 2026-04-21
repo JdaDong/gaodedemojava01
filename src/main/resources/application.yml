@@ -1,0 +1,45 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: gaode-demo-java
+  # 额外加载 classpath 下的 config.properties（兼容原 CLI 用法）
+  # optional: 前缀表示文件不存在也不报错
+  config:
+    import:
+      - optional:classpath:config.properties
+
+amap:
+  # key 加载优先级（从高到低，无需在此处写 key，Spring Boot 会自动松绑定）：
+  #   1) 命令行  --amap.key=xxx
+  #   2) JVM    -Damap.key=xxx
+  #   3) 环境变量 AMAP_KEY  ← Docker 容器推荐方式（Spring Boot 自动做 amap.key ↔ AMAP_KEY 松绑定）
+  #   4) config.properties 中的 amap.key（由 spring.config.import 引入，仅本地开发）
+  base-url: https://restapi.amap.com/v3
+  connect-timeout-seconds: 5
+  read-timeout-seconds: 10
+
+# 日志配置（若 classpath 下也有 logback.xml，则 logback.xml 优先）
+logging:
+  level:
+    org.example: INFO
+    org.springframework.web: INFO
+  pattern:
+    console: "%d{HH:mm:ss.SSS} %-5level [%thread] %logger{36} - %msg%n"
+
+# SpringDoc / Swagger UI 配置
+# 文档页: http://localhost:8080/swagger-ui.html
+# 元数据: http://localhost:8080/v3/api-docs
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    # 让接口按 HTTP 方法排序，看起来更直观
+    operations-sorter: method
+    tags-sorter: alpha
+    # 默认折叠 Models，主舞台留给 API
+    doc-expansion: none
+  # 仅扫描我们的 controller，避免 SpringDoc 自己的端点也被列出
+  packages-to-scan: org.example.web
